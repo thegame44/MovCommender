@@ -1,9 +1,7 @@
 Flask
 Flask-Session
 requests
-smtplib
 sqlite3
-email
 math
 json
 gunicorn
