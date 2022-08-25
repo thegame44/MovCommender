@@ -1,0 +1,106 @@
+<div class="main-container">
+  <!-- <h1 style="color: #ffff;">(1/7)</h1> -->
+  <h2>(6/7). Choose the content's release date?</h2>
+  <div class="wrapper">
+    <div class="icon facebook">
+      <div class="tooltip">
+        <p>
+          - Basically choose the time interval of the content you desire or just choose doesn't matter.
+        </p>
+      </div>
+      <span>
+        <i class="fa-regular fa-circle-question">
+        </i>
+      </span>
+    </div>
+  </div>
+  <br>
+
+  
+  <div class="testt" id="q-4-radio-buttons">
+    <div class="radio-buttons">
+      <label class="custom-radio">
+        <input type="radio" name="radio" value="2022" checked />
+        <span class="radio-btn" style="height: 170px;"><i class="las la-check"></i>
+          <div class="hobbies-icon">
+            <h3>This year</h3>
+            <br>
+            <h4 style=" color: antiquewhite;">2022</h4>
+          </div>
+        </span>
+      </label>
+      {% for ele in data %}
+      <label class="custom-radio">
+        <input type="radio" name="radio" value="{{ ele[1] }}"/>
+        <span class="radio-btn" style="height: 170px;"><i class="las la-check"></i>
+          <div class="hobbies-icon">
+            <h3>{{ ele[0] }}</h3>
+            <br>
+            {{ ele[2] }}
+            <h4 style="width: 140px; text-align:left; margin-bottom: auto; color: antiquewhite; {{ ele[3] }}">{{ ele[1] }}</h4>
+          </div>
+        </span>
+      </label>
+      {% endfor %}
+
+      <label class="custom-radio">
+        <input type="radio" name="radio" value="doesnt_matter"/>
+        <span class="radio-btn" style="height: 170px;"><i class="las la-check"></i>
+          <div class="hobbies-icon">
+            <i class="las la-dice"></i>
+            <h3>Doesn't matter</h3>
+          </div>
+        </span>
+      </label>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+      var url = window.location.href;
+      if( url.indexOf('#') < 0 ) {
+          window.location.replace(url + "#");
+      } else {
+          window.location.replace(url);
+      }
+  });
+
+    var newWidth = window.innerWidth;
+    if (newWidth <= 550) {
+      // pass
+    }
+    else {
+      document.getElementById("q-4-radio-buttons").style.width = 40 + '%';
+    }
+
+  </script>
+
+  <span style="padding-top: 20px;">
+    <span class='back-buttons'>
+      <a id="back-buttons" class="btn btn-primary" target="question5" style="width: 100px;">
+        <i class="las la-undo"></i>Back
+      </a>
+    </span>
+    <span class='question-buttons'>
+      <a id="question" class="btn btn-primary" target="question7" style="width: 100px;">
+        Next <i class="las la-redo"></i>
+      </a>
+    </span>
+  </span>
+</div>
+
+<script>
+  try {
+    let result = document.evaluate(
+      '//input[@value="{e}"]'.format({ e: choices[5] }),
+      document,
+      null,
+      XPathResult.ANY_TYPE,
+      null
+      ).iterateNext();
+      
+    result.checked = true;
+  }
+  catch {
+    // pass
+  }
+</script>

@@ -1,0 +1,89 @@
+<div class="main-container">
+  <!-- <h1 style="color: #ffff;">(1/7)</h1> -->
+  <h2>(2/7). Choose any Title type you're interested in</h2>
+  <h5 class="mini-rec" style="padding-bottom: 15px;">Multiple choices are possible.</h5>
+  <div class="wrapper">
+    <div class="icon facebook">
+       <div class="tooltip" style="width: 361px;">
+        <p>
+          Choosing many options is allowed we strongly recommend no more than 3 choices.
+        </p>
+       </div>
+       <span>
+        <i class="fa-regular fa-circle-question">
+        </i>
+      </span>
+    </div>
+ </div>
+  <br>
+  <div class="question-container">
+    <div class="box-wrapper">
+      <div class="box">
+        <div class="checkbox-wrap">
+          <input type="checkbox" name="radio" class="first-checkbox" id="Movies" value='feature' checked onchange="stickyheaddsadaer(this)">
+          <span></span>
+        </div>
+        <label for="Movies" class="label">Movies</label>
+      </div>
+      {% for ele in data %}
+        <div class="box">
+          <div class="checkbox-wrap">
+            <input type="checkbox" name="radio" id="{{ ele[1] }}" value="{{ ele[1] }}" onchange="stickyheaddsadaer(this)">
+            <span></span>
+          </div>
+          <label for="{{ ele[1] }}" class="label">{{ ele[0] }}</label>
+        </div>
+      {% endfor %}
+      <div class="box">
+        <div class="checkbox-wrap">
+          <input type="checkbox" name="radio" class="last-checkbox" value="doesnt_matter" id="Not sure" onchange="Chooseforme()">
+          <span></span>
+        </div>
+        <label for="Not sure" class="label">Not sure, just choose for me</label>
+      </div>
+    </div>
+  </div>
+  <span style="padding-top: 20px;">
+      <span class='back-buttons'>
+        <a id="back-buttons" class="btn btn-primary" target="question1" style="width: 100px;">
+            <i class="las la-undo"></i>Back
+        </a>
+      </span>
+      <span class='question-buttons'>
+        <a id="question" class="btn btn-primary" target="question3" style="width: 100px;">
+            Next <i class="las la-redo"></i>
+        </a>
+      </span>
+  </span>
+</div>
+
+
+<script>
+  $(document).ready(function() {
+    var url = window.location.href;
+    if( url.indexOf('#') < 0 ) {
+        window.location.replace(url + "#");
+    } else {
+        window.location.replace(url);
+    }
+});
+  for (e in choices[1]) {
+    try {
+      let result = document.evaluate(
+        '//input[@value="{e}"]'.format({ e: choices[1][e] }),
+        document,
+        null,
+        XPathResult.ANY_TYPE,
+        null
+        ).iterateNext();
+        
+      result.checked = true;
+    }
+    catch {
+      // pass
+    }
+    if (choices[1].includes('doesnt_matter')) {
+      document.getElementById('Movies').checked = false;
+    }
+  }
+</script>

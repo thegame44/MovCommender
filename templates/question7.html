@@ -1,0 +1,831 @@
+<div class="main-container">
+  <!-- <h1 style="color: #ffff;">(1/7)</h1> -->
+  <h2>(7/7). Optional questions</h2>
+  <div class="wrapper">
+    <div class="icon facebook">
+      <div class="tooltip">
+        <p>
+          It's not neccessry to answear any question on this page, you can just press "result" button to get the result but if you want to further filter the results or you want to specify a specific info feel free to do so.
+        </p>
+        <p>
+          - First box (Select Language): You need to select the language of the content you want to consume ex: English.
+        </p>
+        <p>
+          - Second box (Select a country): You need to select a country in which the content was filmed/released in ex: United state.
+        </p>
+        <p>
+          - Third box (Select a company): You need to select a production company that produced your desired content ex: Walt Disney.
+        </p>
+        <p>
+          - Fourth box (Select an fruition): You need to select an accomplishment/achievement ex: Oscar-Winning.
+        </p>
+      </div>
+      <span>
+        <i class="fa-regular fa-circle-question">
+        </i>
+      </span>
+    </div>
+  </div>
+  <br>
+
+  <section id="q7_div" class="card text-center" style="width: 350px; height: 600px; background: transparent;">
+    <ul class="list-group bg-transparent" >
+		
+		<li class="list-group-item" style="background: transparent; border-color: transparent;">
+        <!-- <h3 style="padding: 20px; color: #6aa0d6;">Choose a Country</h3> -->
+        <div class="container_t" style="display: flex; ">
+    
+          <div class="select-box">
+            <div class="options-container-1">
+              <div class="option_t-1">
+                <input type="radio" class="radio" id="doesntmatter1" name="radio" value='doesnt_matter' checked/>
+                <label for="doesntmatter1">Doesn't matter</label>
+              </div>
+              {% for lang in languages %}
+              <div class="option_t-1">
+                <input type="radio" class="radio" id="{{ lang[1] }}" name="radio" value='{{ lang[0] }}'/>
+                <label for="{{ lang[1] }}">{{ lang[1] }}</label>
+              </div>
+              {% endfor %}
+            </div>
+    
+            <div class="selected-1">
+              Select Language (optional)
+            </div>
+    
+            <div class="search-box-1">
+              <input type="text" placeholder="Type a language name ex: English" />
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item" style="background: transparent; border-color: transparent;">
+        <!-- <h3 style="padding: 20px; color: #6aa0d6;">Choose a Country</h3> -->
+        <div class="container_t" style="display: flex; ">
+    
+          <div class="select-box">
+            <div class="options-container-2">
+              <div class="option_t-2">
+                <input type="radio" class="radio" id="doesntmatter2" name="radio1" value="doesnt_matter" checked/>
+                <label for="doesntmatter2">Doesn't matter</label>
+              </div>
+              {% for country in country %}
+              <div class="option_t-2">
+                <input type="radio" class="radio" id="{{ country[1] }}" name="radio1" value="{{ country[0] }}" />
+                <label for="{{ country[1] }}">{{ country[1] }}</label>
+              </div>
+              {% endfor %}
+            </div>
+    
+            <div class="selected-2">
+              Select country   (optional)
+            </div>
+    
+            <div class="search-box-2">
+              <input type="text" placeholder="Type a country name ex: United state" />
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item" style="background: transparent; border-color: transparent;">
+        <!-- <h3 style="padding: 20px; color: #6aa0d6;">Choose a Country</h3> -->
+        <div class="container_t" style="display: flex; ">
+    
+          <div class="select-box">
+            <div class="options-container-3">
+              <div class="option_t-3">
+                <input type="radio" class="radio" id="doesntmatter3" name="radio2" value="doesnt_matter" checked/>
+                <label for="doesntmatter3">Doesn't matter</label>
+              </div>
+              {% for company in companies %}
+              <div class="option_t-3">
+                <input type="radio" class="radio" id="{{ company[0] }}" name="radio2" value="{{ company[1] }}" />
+                <label for="{{ company[0] }}">{{ company[0] }}</label>
+              </div>
+              {% endfor %}
+            </div>
+    
+            <div class="selected-3">
+              Select a company   (optional)
+            </div>
+    
+            <div class="search-box-3">
+              <input type="text" placeholder="Type a company ex: Walt Disney" />
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item" style="background: transparent; border-color: transparent;">
+        <!-- <h3 style="padding: 20px; color: #6aa0d6;">Choose a Country</h3> -->
+        <div class="container_t" style="display: flex; ">
+    
+          <div class="select-box">
+            <div class="options-container-4">
+              <div class="option_t-4">
+                <input type="radio" class="radio" id="doesntmatter4" name="radio3" value="doesnt_matter" checked/>
+                <label for="doesntmatter4">Doesn't matter</label>
+              </div>
+              {% for award in awards %}
+              <div class="option_t-4">
+                <input type="radio" class="radio" id="{{ award[1] }}" name="radio3" value="{{ award[0] }}" />
+                <label for="{{ award[1] }}">{{ award[1] }}</label>
+              </div>
+              {% endfor %}
+            </div>
+    
+            <div class="selected-4">
+              Select an fruition   (optional)
+            </div>
+    
+            <div class="search-box-4">
+              <input type="text" placeholder="Type an fruition ex: Oscar-Winning" />
+            </div>
+          </div>
+        </div>
+      </li>
+      
+    </ul>
+	<span style="padding-top: 20px;">
+	  <span class='back-buttons'>
+		<a id="back-buttons" class="btn btn-primary" target="question6" style="width: 100px;">
+		  <i class="las la-undo"></i>Back
+		</a>
+	  </span>
+	  <span class='question-buttons'>
+		<a id="question" class="btn btn-primary" target="result" style="width: 120px;">
+		  Result <i class="fa-solid fa-magnifying-glass-arrow-right"></i>
+		</a>
+	  </span>
+	  <!-- result -->
+	</span>
+  </div>
+  </section>
+
+
+<style>
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+  
+h2 {
+	margin: 16px;
+}
+  
+
+  
+.select-box {
+	position: relative;
+	display: flex;
+	width: 400px;
+	flex-direction: column;
+}
+  
+.select-box .options-container-1 {
+	background: #2f3640;
+	color: #f5f6fa;
+	max-height: 0;
+	width: 100%;
+	opacity: 0;
+	transition: all 0.4s;
+	border-radius: 8px;
+	overflow: hidden;
+  
+	order: 1;
+}
+  
+
+.selected-1 {
+	background: #2f3640;
+	border-radius: 8px;
+	margin-bottom: 8px;
+	color: #f5f6fa;
+	position: relative;
+  
+	order: 0;
+}
+  
+.selected-1::after {
+	content: "";
+	background: url("/static/arrow-down.svg");
+	background-size: contain;
+	background-repeat: no-repeat;
+  
+	position: absolute;
+	height: 100%;
+	width: 32px;
+	right: 10px;
+	top: 5px;
+  
+	transition: all 0.4s;
+}
+  
+
+.select-box .options-container-1.active {
+	max-height: 240px;
+	opacity: 1;
+	overflow-y: scroll;
+	margin-top: 54px;
+}
+  
+.select-box .options-container-1.active + .selected-1::after {
+	transform: rotateX(180deg);
+	top: -6px;
+}
+  
+.select-box .options-container-1::-webkit-scrollbar {
+	width: 8px;
+	background: #0d141f;
+	border-radius: 0 8px 8px 0;
+}
+  
+.select-box .options-container-1::-webkit-scrollbar-thumb {
+	background: #525861;
+	border-radius: 0 8px 8px 0;
+}
+  
+.select-box .option_t,
+.selected-1 {
+	padding: 12px 24px;
+	cursor: pointer;
+}
+  
+.select-box .option_t-1:hover {
+	background: #414b57;
+}
+  
+.select-box label {
+	cursor: pointer;
+}
+  
+.select-box .option_t-1 .radio {
+	display: none;
+}
+  
+  /* Searchbox */
+  
+.search-box-1 input {
+	width: 100%;
+	padding: 10px 14px;
+	font-family: "Roboto", sans-serif;
+	font-size: 16px;
+	display: grid;
+   	justify-content: center;
+	position: absolute;
+	border-radius: 8px 8px 0 0;
+	z-index: 100;
+	border: 8px solid #2f3640;
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.4s;
+}
+  
+.search-box-1 input:focus {
+	outline: none;
+}
+  
+.select-box .options-container-1.active ~ .search-box-1 input {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+</style>
+
+<style>
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+  
+h2 {
+	margin: 16px;
+}
+  
+
+  
+.select-box {
+	position: relative;
+	display: flex;
+	width: 400px;
+	flex-direction: column;
+}
+  
+.select-box .options-container-2 {
+	background: #2f3640;
+	color: #f5f6fa;
+	max-height: 0;
+	width: 100%;
+	opacity: 0;
+	transition: all 0.4s;
+	border-radius: 8px;
+	overflow: hidden;
+  
+	order: 1;
+}
+  
+
+.selected-2 {
+	background: #2f3640;
+	border-radius: 8px;
+	margin-bottom: 8px;
+	color: #f5f6fa;
+	position: relative;
+  
+	order: 0;
+}
+  
+.selected-2::after {
+	content: "";
+	background: url("/static/arrow-down.svg");
+	background-size: contain;
+	background-repeat: no-repeat;
+  
+	position: absolute;
+	height: 100%;
+	width: 32px;
+	right: 10px;
+	top: 5px;
+  
+	transition: all 0.4s;
+}
+  
+
+.select-box .options-container-2.active {
+	max-height: 240px;
+	opacity: 1;
+	overflow-y: scroll;
+	margin-top: 54px;
+}
+  
+.select-box .options-container-2.active + .selected-2::after {
+	transform: rotateX(180deg);
+	top: -6px;
+}
+  
+.select-box .options-container-2::-webkit-scrollbar {
+	width: 8px;
+	background: #0d141f;
+	border-radius: 0 8px 8px 0;
+}
+  
+.select-box .options-container-2::-webkit-scrollbar-thumb {
+	background: #525861;
+	border-radius: 0 8px 8px 0;
+}
+  
+.select-box .option_t,
+.selected-2 {
+	padding: 12px 24px;
+	cursor: pointer;
+}
+  
+.select-box .option_t-2:hover {
+	background: #414b57;
+}
+  
+.select-box label {
+	cursor: pointer;
+}
+  
+.select-box .option_t-2 .radio {
+	display: none;
+}
+  
+  /* Searchbox */
+  
+.search-box-2 input {
+	width: 100%;
+	padding: 10px 14px;
+	font-family: "Roboto", sans-serif;
+	font-size: 16px;
+	display: grid;
+   	justify-content: center;
+	position: absolute;
+	border-radius: 8px 8px 0 0;
+	z-index: 100;
+	border: 8px solid #2f3640;
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.4s;
+}
+  
+.search-box-2 input:focus {
+	outline: none;
+}
+  
+.select-box .options-container-2.active ~ .search-box-2 input {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+</style>
+
+<style>
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+  
+h2 {
+	margin: 16px;
+}
+  
+
+  
+.select-box {
+	position: relative;
+	display: flex;
+	width: 400px;
+	flex-direction: column;
+}
+  
+.select-box .options-container-3 {
+	background: #2f3640;
+	color: #f5f6fa;
+	max-height: 0;
+	width: 100%;
+	opacity: 0;
+	transition: all 0.4s;
+	border-radius: 8px;
+	overflow: hidden;
+  
+	order: 1;
+}
+  
+
+.selected-3 {
+	background: #2f3640;
+	border-radius: 8px;
+	margin-bottom: 8px;
+	color: #f5f6fa;
+	position: relative;
+  
+	order: 0;
+}
+  
+.selected-3::after {
+	content: "";
+	background: url("/static/arrow-down.svg");
+	background-size: contain;
+	background-repeat: no-repeat;
+  
+	position: absolute;
+	height: 100%;
+	width: 32px;
+	right: 10px;
+	top: 5px;
+  
+	transition: all 0.4s;
+}
+  
+
+.select-box .options-container-3.active {
+	max-height: 240px;
+	opacity: 1;
+	overflow-y: scroll;
+	margin-top: 54px;
+}
+  
+.select-box .options-container-3.active + .selected-3::after {
+	transform: rotateX(180deg);
+	top: -6px;
+}
+  
+.select-box .options-container-3::-webkit-scrollbar {
+	width: 8px;
+	background: #0d141f;
+	border-radius: 0 8px 8px 0;
+}
+  
+.select-box .options-container-3::-webkit-scrollbar-thumb {
+	background: #525861;
+	border-radius: 0 8px 8px 0;
+}
+  
+.select-box .option_t,
+.selected-3 {
+	padding: 12px 24px;
+	cursor: pointer;
+}
+  
+.select-box .option_t-3:hover {
+	background: #414b57;
+}
+  
+.select-box label {
+	cursor: pointer;
+}
+  
+.select-box .option_t-3 .radio {
+	display: none;
+}
+  
+  /* Searchbox */
+  
+.search-box-3 input {
+	width: 100%;
+	padding: 10px 14px;
+	font-family: "Roboto", sans-serif;
+	font-size: 16px;
+	display: grid;
+   	justify-content: center;
+	position: absolute;
+	border-radius: 8px 8px 0 0;
+	z-index: 100;
+	border: 8px solid #2f3640;
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.4s;
+}
+  
+.search-box-3 input:focus {
+	outline: none;
+}
+  
+.select-box .options-container-3.active ~ .search-box-3 input {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+</style>
+
+<style>
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+  
+h2 {
+	margin: 16px;
+}
+  
+
+  
+.select-box {
+	position: relative;
+	display: flex;
+	width: 400px;
+	flex-direction: column;
+}
+  
+.select-box .options-container-4 {
+	background: #2f3640;
+	color: #f5f6fa;
+	max-height: 0;
+	width: 100%;
+	opacity: 0;
+	transition: all 0.4s;
+	border-radius: 8px;
+	overflow: hidden;
+  
+	order: 1;
+}
+  
+
+.selected-4 {
+	background: #2f3640;
+	border-radius: 8px;
+	margin-bottom: 8px;
+	color: #f5f6fa;
+	position: relative;
+  
+	order: 0;
+}
+  
+.selected-4::after {
+	content: "";
+	background: url("/static/arrow-down.svg");
+	background-size: contain;
+	background-repeat: no-repeat;
+  
+	position: absolute;
+	height: 100%;
+	width: 32px;
+	right: 10px;
+	top: 5px;
+  
+	transition: all 0.4s;
+}
+  
+
+.select-box .options-container-4.active {
+	max-height: 240px;
+	opacity: 1;
+	overflow-y: scroll;
+	margin-top: 54px;
+}
+  
+.select-box .options-container-4.active + .selected-4::after {
+	transform: rotateX(180deg);
+	top: -6px;
+}
+  
+.select-box .options-container-4::-webkit-scrollbar {
+	width: 8px;
+	background: #0d141f;
+	border-radius: 0 8px 8px 0;
+}
+  
+.select-box .options-container-4::-webkit-scrollbar-thumb {
+	background: #525861;
+	border-radius: 0 8px 8px 0;
+}
+  
+.select-box .option_t,
+.selected-4 {
+	padding: 12px 24px;
+	cursor: pointer;
+}
+  
+.select-box .option_t-4:hover {
+	background: #414b57;
+}
+  
+.select-box label {
+	cursor: pointer;
+}
+  
+.select-box .option_t-4 .radio {
+	display: none;
+}
+  
+  /* Searchbox */
+  
+.search-box-4 input {
+	width: 100%;
+	padding: 10px 14px;
+	font-family: "Roboto", sans-serif;
+	font-size: 16px;
+	display: grid;
+   	justify-content: center;
+	position: absolute;
+	border-radius: 8px 8px 0 0;
+	z-index: 100;
+	border: 8px solid #2f3640;
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.4s;
+}
+  
+.search-box-4 input:focus {
+	outline: none;
+}
+  
+.select-box .options-container-4.active ~ .search-box-4 input {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+</style>
+
+
+
+
+<script>
+  
+  $(document).ready(function() {
+    var url = window.location.href;
+    if( url.indexOf('#') < 0 ) {
+        window.location.replace(url + "#");
+    } else {
+        window.location.replace(url);
+    }
+});
+
+  var newWidth = window.innerWidth;
+
+  String.prototype.format = function (args) {
+    var newStr = this;
+    for (var key in args) {
+        newStr = newStr.replace('{' + key + '}', args[key]);
+    }
+    return newStr;
+  }
+
+  var selected = [];
+  var optionsContainer = [];
+  var searchBox = [];
+  var optionsList = [];
+  var filterList = []
+  var searchTerm = [];
+  
+  var label = [];
+
+  for (let i = 1; i < 5; i++) {
+	try {
+		selected[i] = document.querySelector(".selected-{i}".format({ i: i }));
+		optionsContainer[i] = document.querySelector(".options-container-{i}".format({ i: i }));
+		searchBox[i] = document.querySelector(".search-box-{i} input".format({ i: i }));
+		
+		optionsList[i] = document.querySelectorAll(".option_t-{i}".format({ i: i }));
+		filterList[i] = searchTerm => {
+			searchTerm = searchTerm.toLowerCase();
+			optionsList[i].forEach(option => {
+				label[i] = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+				if (label[i].indexOf(searchTerm) != -1) {
+					option.style.display = "block";
+				} else {
+					option.style.display = "none";
+				}
+			});
+		};
+		}
+	catch {
+		console.log('Error: Go to the previous page to reload resources!')
+	};
+
+	
+	selected[i].addEventListener("click", () => {
+		optionsContainer[i].classList.toggle("active");
+		for (e in optionsContainer){
+			if (optionsContainer[e] != optionsContainer[i]) {
+				optionsContainer[e].classList.remove("active");
+			}
+		};
+		searchBox[i].value = "";
+		filterList[i]("");
+
+		if (optionsContainer[i].classList.contains("active")) {
+			searchBox[i].focus();
+		}
+	});
+
+
+	
+	optionsList[i].forEach(o => {
+		o.addEventListener("click", () => {
+		document.getElementById(o.querySelector("label").innerHTML).checked = true;
+		if ( i == 1) {
+			selected[i].innerHTML = 'Language :  ' + o.querySelector("label").innerHTML;
+		}
+		else if ( i == 2) {
+			selected[i].innerHTML = 'From :  ' + o.querySelector("label").innerHTML;
+		}
+		else if ( i == 3) {
+			selected[i].innerHTML = 'By :  ' + o.querySelector("label").innerHTML;
+		}
+		else if ( i == 4) {
+			selected[i].innerHTML = 'Is :  ' + o.querySelector("label").innerHTML;
+		}
+		optionsContainer[i].classList.remove("active");
+		});
+	});
+	
+
+	searchBox[i].addEventListener("keyup", function (e) {
+		filterList[i](e.target.value);
+	});
+
+
+	};
+	try {
+		document.querySelector("input[type='radio'][name=radio][value='{e}']".format({ e: choices[6] })).checked = true;
+		document.querySelector("input[type='radio'][name=radio1][value='{e}']".format({ e: choices[7] })).checked = true;
+		document.querySelector("input[type='radio'][name=radio2][value='{e}']".format({ e: choices[8] })).checked = true;
+		document.querySelector("input[type='radio'][name=radio3][value='{e}']".format({ e: choices[9] })).checked = true;
+		
+		selected[1].innerHTML = 'Language :  ' + document.querySelector("input[type='radio'][name=radio]:checked").id;
+		selected[2].innerHTML = 'From :  ' + document.querySelector("input[type='radio'][name=radio1]:checked").id;
+		selected[3].innerHTML = 'By :  ' + document.querySelector("input[type='radio'][name=radio2]:checked").id;
+		selected[4].innerHTML = 'Is :  ' + document.querySelector("input[type='radio'][name=radio3]:checked").id;
+	}
+	catch {
+	// pass
+	}
+	// if (done_chan == 0) {
+	// 	try {
+	// 		if (choices[6] != 'doesnt_matter') {
+	// 			document.querySelector("input[type='radio'][name=radio][value='{e}']".format({ e: choices[6] })).checked = true;
+	// 			selected[1].innerHTML = 'Language :  ' + document.querySelector("input[type='radio'][name=radio]:checked").id;
+	// 		}
+	// 		if (choices[7] != 'doesnt_matter') {
+	// 			document.querySelector("input[type='radio'][name=radio1][value='{e}']".format({ e: choices[7] })).checked = true;
+	// 			selected[2].innerHTML = 'From :  ' + document.querySelector("input[type='radio'][name=radio1]:checked").id;
+	// 		}
+	// 		if (choices[8] != 'doesnt_matter') {
+	// 			document.querySelector("input[type='radio'][name=radio2][value='{e}']".format({ e: choices[8] })).checked = true;
+	// 			selected[3].innerHTML = 'By :  ' + document.querySelector("input[type='radio'][name=radio2]:checked").id;
+	// 		}
+	// 		if (choices[9] != 'doesnt_matter') {
+	// 			document.querySelector("input[type='radio'][name=radio3][value='{e}']".format({ e: choices[9] })).checked = true;
+	// 			selected[4].innerHTML = 'Is :  ' + document.querySelector("input[type='radio'][name=radio3]:checked").id;
+	// 		}
+	// 		done_chan = 1
+	// 	}
+	// 	catch {
+	// 	// pass
+	// 	}
+	// }
+
+
+</script>
+
+

@@ -1,0 +1,240 @@
+
+<style>
+
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #cef;
+  margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.msg {
+  margin-left:auto;
+  margin-right:auto;
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+}
+
+.center {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+/* loading icon color */
+#bonfire-pageloader svg {
+    fill:#fff;
+}
+
+#bonfire-pageloader svg {
+    -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
+    width:100px;
+    height:100px;
+}
+
+.bonfire-pageloader-fade {
+    opacity:0 !important;
+    -webkit-transition: all .75s ease;
+    -moz-transition: all .75s ease;
+    -o-transition: all .75s ease;
+    -ms-transition: all .75s ease;
+    transition: all .75s ease;
+}
+.bonfire-pageloader-hide {
+    display:none;
+}
+
+.bonfire-pageloader-icon-hide {
+    opacity:0 !important;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    transition: all .25s ease;
+}
+
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(-360deg); } }
+@-moz-keyframes spin { 100% { -moz-transform: rotate(-360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
+
+/* lets give the page body that subtle slide-in animation */
+.bonfire-html-onload {
+    -webkit-transform: translateY(-50px);
+    -moz-transform: translateY(-50px);
+    -ms-transform: translateY(-50px);
+    -o-transform: translateY(-50px);
+    transform: translateY(-50px);
+    -webkit-transition: all 0s ease;
+    -moz-transition: all 0s ease;
+    -o-transition: all 0s ease;
+    -ms-transition: all 0s ease;
+    transition: all 0s ease;
+}
+</style>
+
+<script>
+    function resizenow() {
+        var browserwidth = jQuery(window).width();
+        var browserheight = jQuery(window).height();
+        jQuery('.bonfire-pageloader-icon').css('right', ((browserwidth - jQuery(".bonfire-pageloader-icon").width())/2)).css('top', ((browserheight - jQuery(".bonfire-pageloader-icon").height())/2));
+    };
+    resizenow();
+
+
+    jQuery(window).resize(function(){
+         resizenow();
+    });
+
+    jQuery("html").addClass('bonfire-html-onload');
+
+
+</script>
+<div class="main-container">
+  <div class="center">
+    <div class="msg">
+        <!--- Spinning Loading GIF Goes here --->
+        <!---<img src="/static/images/activity.gif" alt="Please Wait...">--->
+        <div id="bonfire-pageloader">
+        <div class="bonfire-pageloader-icon">
+          <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            
+        </div>
+        </div>
+        <div style="color:white; margin-left:auto; margin-right:auto; font-size: 1.3em;">
+        Please wait... Loading...
+        </div>
+        <button type="button" onclick="window.location.href='/'" style="margin-top: 12px;" class="btn btn-primary btn-lg"><i class="fa-solid fa-house-user"></i> Go home</button>
+    </div>
+  </div>
+</div>
+<script>
+    if (got_alr == 0) {
+        $.ajax({
+          url: "/processing",
+          type: "get",
+          // data: {jsdata: 'hi there'},
+          success: function(response) {
+            const string = response;
+            
+            if (string.indexOf('<div class="main-container">') !== -1){
+              $("#infodiv").html(response);
+            }
+            else {
+              document.write(response);
+            }
+            got_alr = 1
+          },
+          error: function(xhr) {
+            //Do Something to handle error
+          }
+        });
+    }
+    else {
+        $.ajax({
+          url: "/getnewrecommendation",
+          type: "get",
+          // data: {jsdata: 'hi there'},
+          success: function(response) {
+            const string = response;
+            const substring = '<div class="moon"></div>';
+            
+            const index = string.indexOf(substring);
+            
+            if (string.indexOf('<div class="main-container">') !== -1){
+              $("#infodiv").html(response);
+            }
+            else {
+              document.write(response);
+            }
+          },
+          error: function(xhr) {
+            //Do Something to handle error
+          }
+        });
+
+    }
+</script>
+

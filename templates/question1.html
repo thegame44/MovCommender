@@ -1,0 +1,76 @@
+<div class="main-container">
+    <!-- <h1 style="color: #ffff;">(1/7)</h1> -->
+    <h2 style="padding-bottom: 20px;">(1/7). How do you feel today?</h2>
+    <div class="testt">
+      <div class="radio-buttons">
+        <label class="custom-radio">
+          <input type="radio" name="radio" value="happy" checked />
+          <span class="radio-btn"
+            ><i class="las la-check"></i>
+            <div class="hobbies-icon">
+              <i class="las la-smile"></i>
+              <h3>Happy</h3>
+            </div>
+          </span>
+        </label>
+        <label class="custom-radio">
+          <input type="radio" name="radio" value="neutral"/>
+          <span class="radio-btn"
+            ><i class="las la-check"></i>
+            <div class="hobbies-icon">
+              <i class="las la-meh"></i>
+              <h3>Neutral</h3>
+            </div>
+          </span>
+        </label>
+        <label class="custom-radio">
+          <input type="radio" name="radio" value="sad"/>
+          <span class="radio-btn"
+            ><i class="las la-check"></i>
+            <div class="hobbies-icon">
+              <i class="las la-frown"></i>
+              <h3>Sad</h3>  
+            </div>
+          </span>
+        </label>
+      </div>
+    </div>
+    <span style="margin:0px;padding:0px;padding-top: 20px; width: 90%;">
+        <a id="back-buttons" class="btn btn-primary" href="/" style="width: 150px; ">
+            <i class="las la-home"></i> Back Home
+        </a>
+        <span class='question-buttons'>
+          <a id="question" class="btn btn-primary" target="question2" style="width: 100px;">
+              Next <i class="las la-redo"></i>
+          </a>
+        </span>
+    </span>
+    <br>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var url = window.location.href;
+    if( url.indexOf('#') < 0 ) {
+        window.location.replace(url + "#");
+    } else {
+        window.location.replace(url);
+    }
+});
+
+  try {
+    let result = document.evaluate(
+      '//input[@value="{e}"]'.format({ e: choices[0] }),
+      document,
+      null,
+      XPathResult.ANY_TYPE,
+      null
+      ).iterateNext();
+      
+      result.checked = true;
+    }
+    catch {
+      // pass
+    }
+   
+</script>

@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+
+
+{% block main %}
+<div class="main-container">
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Do you really want to delete your account?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="text-align: left;">
+              By pressing "Understood, just delete my account" button you're accepting that your account will be deleted and unrecoverable, so please think about it for a minute.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a type="button" class="btn btn-primary" href="/deleteaccount">Understood, just delete my account</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <section class="titles">
+        <h1 id="FirstTitle" class="titles-first"><b>Content Recommender</b></h1>
+        <h5 id="SecondTitle" class="titles-second">Bored and you want to watch something but can't seem to decide</h3>
+            <h6 id="ThirdTitle" class="titles-third">Answear 7 question than we'll give you the best movie/series that suits you the most!</h4>
+    </section>
+    
+    <br>
+    <br>
+    <br>
+    <section class="card text-center " >
+        <div class="card-header">
+            Features
+        </div>
+        <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text"><i class="fa-solid fa-circle-check">  
+        time-saving & easy to use
+    </i></p>
+        <p class="card-text"><i class="fa-solid fa-circle-check">  
+            watch trailers directly
+        </i></p>
+        <p class="card-text"><i class="fa-solid fa-circle-check">  
+            only high-quality movies
+        </i></p>
+        <p class="card-text"><i class="fa-solid fa-circle-check">  
+            very fast searching system
+        </i></p>
+        <br>
+        <span class='question-buttons'>
+            <a id="question" class="btn btn-primary"  target="question1"><i class="fa-solid fa-circle-play"></i> Start</a>
+        </span>
+        </div>
+        <!-- <div class="card-footer text-muted">
+        2 days ago
+        </div> -->
+  </section>
+</div>
+
+  {% endblock %}

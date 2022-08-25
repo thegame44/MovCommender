@@ -1,0 +1,108 @@
+<div class="main-container">
+    <!-- <h1 style="color: #ffff;">(1/7)</h1> -->
+    <h2>(3/7). Choose any Genres you're interested in</h2>
+    <h5 class="mini-rec">Multiple choices are possible, but it's recommanded to only choose 4.</h5>
+    <div class="boxess">
+      <ul class="list-group list-group-horizontal">
+        <li>
+          <div class="question-container" style="width: 175px;">
+            <div class="box-wrapper">
+              <div class="box" style="border-radius: 10px 0 0 0;">
+                <div class="checkbox-wrap">
+                  <input type="checkbox" class="first-checkbox" id='Action' name="radio" value='action' checked onchange="stickyheaddsadaer(this)">
+                  <span></span>
+                </div>
+                <label for="Action" class="label">Action</label>
+              </div>
+              {% for ele in data %}
+                <div class="box" style="border-radius: 0 0 0 0;">
+                  <div class="checkbox-wrap">
+                    <input type="checkbox" id="{{ ele[0] }}" name="radio" value='{{ ele[0] }}' onchange="stickyheaddsadaer(this)">
+                    <span></span>
+                  </div>
+                  <label for="{{ ele[0] }}" class="label">{{ ele[1] }}</label>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="question-container" style="width: 175px;">
+            <div class="box-wrapper">
+              <div class="box" style="border-radius: 0 10px 0 0;">
+                <div class="checkbox-wrap">
+                  <input type="checkbox" id="Drama" name="radio" value='drama' onchange="stickyheaddsadaer(this)">
+                  <span></span>
+                </div>
+                <label for="Drama" class="label">Drama</label>
+              </div>
+              {% for ele_2 in data_2 %}
+                <div class="box" style="border-radius: 0 0 0 0;">
+                  <div class="checkbox-wrap">
+                    <input type="checkbox" id="{{ ele_2[0] }}" name="radio" value='{{ ele_2[0] }}' onchange="stickyheaddsadaer(this)">
+                    <span></span>
+                  </div>
+                  <label for="{{ ele_2[0] }}" class="label">{{ ele_2[1] }}</label>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="question-container" >
+        <div class="box-wrapper">
+          <div class="box">
+            <div class="checkbox-wrap">
+              <input type="checkbox" class="last-checkbox" id="Not sure" name="radio" value='doesnt_matter' onchange="Chooseforme()">
+              <span></span>
+            </div>
+            <label for="Not sure" class="label">Not sure, just choose for me</label>
+          </div>
+        </div>
+      </div>
+    </div>
+	<span style="padding-top: 20px;">
+	<span class='back-buttons'>
+		<a id="back-buttons" class="btn btn-primary" target="question2" style="width: 100px;">
+			<i class="las la-undo"></i>Back
+		</a>
+		</span>
+		<span class='question-buttons'>
+		<a id="question" class="btn btn-primary" target="question4" style="width: 100px;">
+			Next <i class="las la-redo"></i>
+		</a>
+		</span>
+		
+	</span>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var url = window.location.href;
+    if( url.indexOf('#') < 0 ) {
+        window.location.replace(url + "#");
+    } else {
+        window.location.replace(url);
+    }
+});
+
+  for (e in choices[2]) {
+    try {
+      let result = document.evaluate(
+        '//input[@value="{e}"]'.format({ e: choices[2][e] }),
+        document,
+        null,
+        XPathResult.ANY_TYPE,
+        null
+        ).iterateNext();
+        
+      result.checked = true;
+    }
+    catch {
+      // pass
+    }
+    if (choices[2].includes('doesnt_matter')) {
+      document.getElementById('Action').checked = false;
+    }
+  };
+</script>

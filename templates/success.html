@@ -1,0 +1,256 @@
+<div class="main-container">
+	<br>
+	<div id="result" class="card mb-3" style="width: 870px; height: 40%; padding: 0px; box-shadow: 0 0 22px #ffffff67; border: 4px solid transparent; background: transparent;">
+	  <div class="row g-0">
+	  <div class="col-md-4">
+	  <img src="{{ data[0] }}" class="img-fluid rounded-start" alt="...">
+	  </div>
+	  <div class="col-md-8">
+		<div class="card-body">
+			<!-- <div id="response_val" style="opacity: 0;" >sdfsdf</div> -->
+	  
+		<span class="badge text-bg-primary" style="background: rgba(180, 192, 245, 0.513);">
+		  type: {{ data[11] }}
+		</span>
+		<span class="badge text-bg-primary" style="background: rgba(180, 192, 245, 0.513);">
+		  release date: {{ data[1] }}
+		</span>
+		<span class="badge text-bg-primary" style="background: rgba(180, 192, 245, 0.513);">
+		  rating: <i class="fa-solid fa-star"></i> {{ data[2] }}
+		</span>
+		<span class="badge text-bg-primary" style="background: rgba(180, 192, 245, 0.513);">
+		  content rating:  <i class="fa-solid fa-address-card"></i> {{ data[3] }}
+		</span>
+		<span class="badge text-bg-primary" style="background: rgba(180, 192, 245, 0.513);">
+		  Run time:  <i class="fa-solid fa-clock"></i> {{ data[4] }}
+		</span>
+		
+		<span class="badge text-bg-light" style="color: white ;background: rgba(180, 192, 245, 0.513);">Director: {{ data[6] }}</span>
+		<span class="badge text-bg-light" style="color: white ;background: rgba(180, 192, 245, 0.513);">Stars: {{ data[5] }}</span>
+		<br>
+		<br>
+		<div class="card" style="width:100%; background: transparent; border: 0px;">
+		<div class="card-header" style="font-size: 30px">
+		  {{ data[7] }}
+		</div>
+		<div class="card-body">
+		  <blockquote class="blockquote mb-0">
+			<p class="card-text" style="color: white;">{{ data[8] }}</p>
+			</blockquote>
+		  </div>
+		</div>
+		<br>
+		<div id="rec_footer" style="position: absolute; bottom: 2px;">
+		  <button type="button" class="btn btn-primary" style="box-shadow: none;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			<i class="fa-solid fa-clapperboard"></i> Watch Trailler
+		  </button>
+		  <button type="button" class="btn btn-primary" style="box-shadow: none;" onclick="window.open('{{ data[9] }}')">
+			<i class="fa-brands fa-wikipedia-w"></i> More Info
+		  </button>
+		  <button id="get_another_rec" type="button" style="box-shadow: none;" class="btn btn-primary" onclick="get_new()">
+			<i class="las la-sync"></i> Get Another Recommendation 
+		  </button>
+		  
+		  <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background: transparent; border: 0px;">
+			<div class="modal-dialog modal-dialog-centered" style="background: transparent;  border: 0px;">
+			<div class="modal-content" style="margin: 0; padding:0; background: transparent; border: 0px;">
+			  <div class="modal-body" style="margin: 0; padding:0; border: 0px;">
+				  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style='margin-left: 100%;'></button>
+				  <!-- <iframe class="youtube-video" style="width: 100%; height: 280px;" src="https://www.youtube.com/embed/{{ data[10] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+				  <iframe class="youtube-video" src="https://www.imdb.com/video/imdb/{{ data[10] }}/imdb/embed?autoplay=false&width=480"  style="width: 100%; height: 280px;" allowfullscreen="true"></iframe>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</div>
+
+
+
+<script>
+	var  videos = document.querySelectorAll('iframe');
+	var source = videos[0].src
+
+	function get_new() {
+		$.get( "/getmethod/{i}".format({ i: "new_request" }));
+		$.ajax({
+			url: "/target_endpoint",
+			type: "get",
+			// data: {jsdata: 'hi there'},
+			success: function(response) {
+				const string = response;
+
+				if (string.indexOf('<div class="main-container">') !== -1){
+					$("#infodiv").html(response);
+				}
+				else {
+				document.write(response);
+				}
+			},
+			error: function(xhr) {
+			//Do Something to handle error
+			}
+		});
+	}
+	var newWidth = window.innerWidth;
+	try {
+		if ( newWidth <= 940){
+			document.getElementById("result").style.width = 100 + '%';
+			document.getElementById("get_another_rec").style.marginTop = 5 + 'px';
+			document.getElementById("rec_footer").style.position = 'relative';
+		}
+		else {
+			document.getElementById("result").style.width = 870 + 'px'; 
+			document.getElementById("get_another_rec").style.marginTop = 0 + 'px';
+			document.getElementById("rec_footer").style.position = 'absolute';
+		}
+	}
+	catch {
+		// pass
+	}
+	try{
+		const ModalEl = document.getElementById('exampleModal')
+		ModalEl.addEventListener('hidden.bs.modal', event => {
+			videos.forEach(i => {
+				i.src = '';
+			});
+		})
+	}
+	catch
+	{
+		// pass
+	}
+	try{
+		const ModalEl = document.getElementById('exampleModal')
+		ModalEl.addEventListener('shown.bs.modal', event => {
+			videos.forEach(i => {
+				i.src = source;
+			});
+		})
+	}
+	catch
+	{
+		// pass
+	}
+</script>
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+.toast{
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px 35px 20px 25px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    border-left: 6px solid #4070f4;
+    overflow: hidden;
+    transform: translateX(calc(100% + 30px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+}
+
+.toast.active{
+    transform: translateX(0%);
+}
+
+.toast .toast-content{
+    display: flex;
+    align-items: center;
+}
+
+.toast-content .check{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 35px;
+    background-color: #4070f4;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.toast-content .message{
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+}
+
+.message .text{
+    font-size: 20px;
+    font-weight: 400;;
+    color: #666666;
+}
+
+.message .text.text-1{
+    font-weight: 600;
+    color: #333;
+}
+
+.toast .close{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.toast .close:hover{
+    opacity: 1;
+}
+
+.toast .progress{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: #ddd;
+}
+
+.toast .progress:before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #4070f4;
+}
+
+.progress.active:before{
+    animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+    100%{
+        right: 100%;
+    }
+}
+
+.bbutton {
+    padding: 12px 20px;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: #4070f4;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.bbutton:hover{
+    background-color: #0e4bf1;
+}
+
+.toast.active ~ button{
+    pointer-events: none;
+}
+
+</style>

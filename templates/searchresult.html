@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+<h2 style="padding-bottom: 20px; color: bisque;">Search result for: {{ searchterm }}</h2>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for data in all_data %}
+    <div class="col">
+      <div class="card h-100" onclick="location.href='/searchitem?id={{ data[0] }}';" style="cursor: pointer;">
+        <img src="{{ data[2] }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ data[1] }}</h5>
+          <p class="card-text">{{ data[3] }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
+
+<style>
+
+
+
+.col {
+  width:335px;
+  padding: 15px;
+  margin: 15px;
+}
+
+.col:hover {
+  background: rgba(23, 23, 241, 0.204);
+}
+
+
+.card {
+  width: 100%; 
+  padding:0px; 
+  margin: 0px
+}
+
+</style>
+
+
+{% endblock %}

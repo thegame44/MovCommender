@@ -1,0 +1,396 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+
+
+<div class="wrapper fadeInDown" style="padding-top: 30px;">
+  {% if errormessage[0] %}
+    <div class="alert alert-warning alert-dismissible fade show" style="background: rgba(246, 59, 59, 0.585); color:white; border-color: #ffffff;" role="alert">
+      <i class="fa-solid fa-triangle-exclamation"></i> {{ errormessage[0] }}
+      <button style="box-shadow: none;" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <h2>It's required to log in</h2>
+    <div class="wrapper">
+        <div class="icon facebook">
+           <div class="tooltip" style="width: 361px;">
+            <p>
+                * It's required to entre the verification code *
+            </p>
+            <p>
+              - Common problems: Not receiving the code Solutions:
+            </p>
+            <p>
+              - 1: Be sure to check 'spam' and 'inbox'.
+            </p>
+            <p>
+              - 2: Press 'Resend the code' button, if you don't see it than wait for that 30s timer to go down to 0 than you will be able to press it.
+            </p>
+            <p>
+              - 3: If the solutions above don't fix the problem than try checking your email by pressing 'Verify your email' to go back to previous page and try correcting it if it's incorrect.
+            </p>
+            <p>
+              - Tips: don't refresh the page so much cause when ever you do the counter will restart, and if you face any more problem contact the dev.
+            </p>
+           </div>
+           <span>
+            <i class="fa-regular fa-circle-question">
+            </i>
+          </span>
+        </div>
+     </div>
+     <br>
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 onclick="window.location = '/forgotpassword';"  class="inactive underlineHover"><a ><i class="fa-solid fa-user-pen"></i> change the email</a></h2>
+      <!-- <h2 onclick="history.back()" class="active">back <i class="fa-solid fa-right-to-bracket"></i></h2> -->
+      <h2 class="active">Verify your email <i class="fa-solid fa-user-check"></i></h2>
+  
+  
+      <br>
+  
+      <!-- Login Form -->
+      <form action="/emailverification" method="post">
+        <h5>A verification code has been sent to: {{ email }}</h5>
+        <input class="input_form" type="numeric" autocomplete="off" id="code" class="fadeIn second" name="code" placeholder="Entre code ex: 212578"  value="{{ errormessage[1] }}">
+        <!-- <input class="submit_form" type="submit" class="fadeIn fourth" value="Next" style=" margin-bottom: 10px"> -->
+        <button class="btn btn-primary" type="type" style="margin: 15px; box-shadow: none" onclick='disable_submit_buttons(this);'>
+          Submit
+        </button>
+      </form>
+      
+      
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a id="footer_timer" onclick="funcfunc(30);" style="pointer-events: none" class="underlineHover" method="post" href="/sendverification">error</a>
+        <!-- <form action="/emailverification" method="post">
+          <input class="underlineHover" type="submit" value="goood is that?">
+        </form> -->
+      </div>
+  
+    </div>
+  </div>
+
+<script>
+let timeSecond = 30;
+const timeH = document.querySelector("#footer_timer");
+console.log(timeSecond)
+
+funcfunc(timeSecond);
+
+function funcfunc(timeSecond) {
+  $('#footer_timer').css("pointer-events", "none");
+  $('#footer_timer').css("color", "#b3cee7");
+  displayTime(timeSecond);
+  const countDown = setInterval(() => {
+    timeSecond--;
+    displayTime(timeSecond);
+    if (timeSecond == 0 || timeSecond < 1) {
+      endCount();
+      clearInterval(countDown);
+    }
+  }, 1000);
+}
+
+function displayTime(second) {
+  const min = Math.floor(second / 60);
+  const sec = Math.floor(second % 60);
+  timeH.innerHTML = `You can resend the code after: 
+  ${sec < 10 ? "0" : ""}${sec}
+  `;
+}
+
+function endCount() {
+  timeH.innerHTML = "Resend the code";
+  $('#footer_timer').css("pointer-events", "");
+  $('#footer_timer').css("color", "#5c9ad1");
+}
+</script>
+ 
+
+  
+<style>
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+/* BASIC */
+/* 
+html {
+  background-color: #56baed;
+}
+
+body {
+  /* font-family: "Poppins", sans-serif;
+  height: 100vh;
+}  */
+
+#footer_timer {
+  color: #b3cee7;
+  display:inline-block;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+h2 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px; 
+  color: #cccccc;
+}
+
+.modal-backdrop {
+  height: 0vh;
+}
+
+/* STRUCTURE */
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+}
+
+#formContent {
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: #fff;
+  padding: 30px;
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  padding: 0px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+#formFooter {
+  background-color: #f6f6f6;
+  border-top: 1px solid #dce8f1;
+  padding: 25px;
+  text-align: center;
+  -webkit-border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+
+
+/* TABS */
+
+h2.inactive {
+  color: #cccccc;
+}
+
+h2.active {
+  color: #0d0d0d;
+  border-bottom: 2px solid #5fbae9;
+}
+
+
+
+/* FORM TYPOGRAPHY*/
+
+.submit_form  {
+  background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.submit_form:hover  {
+  background-color: #39ace7;
+}
+
+.submit_form:active  {
+  -moz-transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+.input_form {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.input_form:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
+
+.input_form:placeholder {
+  color: #cccccc;
+}
+
+
+
+/* ANIMATIONS */
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -30%, 0);
+    transform: translate3d(0, -30%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -30%, 0);
+    transform: translate3d(0, -30%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fadeIn {
+  opacity:0;
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+}
+
+.fadeIn.first {
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+.fadeIn.second {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.fadeIn.third {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.fadeIn.fourth {
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+/* Simple CSS3 Fade-in Animation */
+.underlineHover:after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-color: #56baed;
+  content: "";
+  transition: width 0.4s;
+}
+
+.underlineHover:hover {
+  color: #0d0d0d;
+}
+
+.underlineHover:hover:after{
+  width: 100%;
+}
+
+
+
+/* OTHERS */
+
+*:focus {
+    outline: none;
+} 
+
+#icon {
+  width:60%;
+}
+
+* {
+  box-sizing: border-box;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

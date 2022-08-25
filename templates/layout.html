@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script>
+    <link rel="stylesheet" href="/static/styles.css" >
+    <link rel="stylesheet" href="/static/styles_2.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" >
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="/static/scripts.js"></script>
+    
+    <title>MovCommender</title>
+    
+</head>
+<body>
+    <div class="moving">
+      <div class="moving-bg">
+        </div>
+        <nav class="navbar navbar-expand-lg bg-transparent">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/"><i class="fa-solid fa-house"></i> Mov<span>Commender</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+              <i id="test" class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+              <ul  class="navbar-nav me-auto my-2 my-lg-0 navbar-nav" style="--bs-scroll-height: 100px;"> 
+                <!-- add next to navbar-nav -scroll to have scrolllwhel  -->
+                <div id="btn_groupusername" class="btn-group">
+                  <button type="button" style="background: transparent; border: 0px;" class="btn btn-secondary" id="usernamebutton" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ name }}  <i id="arrowdropdown" class="fa-solid fa-circle-chevron-down"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <div id="notsetusername">
+                      <li><a class="dropdown-item" href="/login">Log-in</a></li>
+                      <li><a class="dropdown-item" href="/register">Sign-up</a></li>
+                    </div>
+
+                    <div id="setusername">
+                      <li><a class="dropdown-item"><i class="fa-solid fa-key"></i>: {{ was_it_set[2] }}</a></li>
+                      <li><a class="dropdown-item" href="/apicallsleft">API calls left</a></li>
+                      <li><a class="dropdown-item" href="{{ was_it_set[1] }}">{{ was_it_set[0] }}</a></li>
+                      <li><a class="dropdown-item" href="/changeinfo">Change your info</a></li>
+                      <li><hr class="dropdown-divider">
+                      </li><li><a class="dropdown-item" href="/logout">Log out</a></li>
+                      <li>
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete account</a>
+                      </li>
+                    </div>
+                  </ul>
+                </div>
+                
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="/bestofthebest?page=1">best movies this week</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Top Genres
+                  </a> 
+                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                    <li><a class="dropdown-item" href="/topgenres?genre=crime&page=1">Crime</a></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=drama&page=1">Drama</a></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=action&page=1">Action</a></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=comedy&page=1">Comedy</a></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=family&page=1">Family</a></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=horror&page=1">Horror</a></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=romance&page=1">Romance</a></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=history&page=1">History</a></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=thriller&page=1">thriller</a></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=adventure&page=1">Adventure</a></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=animation&page=1">Animation</a></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=biography&page=1">Biography</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/topgenres?genre=top_1000&page=1">Random</a></li>
+                  </ul>
+                </li>
+                
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Best of the best
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="width: 180px;">
+                    <li><a class="dropdown-item" href="/bestofthebest?class=InTheaters&page=1">In Theaters</a></li>
+                    <li><a class="dropdown-item" href="/bestofthebest?class=Top250Movies&page=1">Top 250 Movies	</a></li>
+                    <li><a class="dropdown-item" href="/bestofthebest?class=Top250TVs&page=1">Top 250 Tv shows</a></li>
+                    <li><a class="dropdown-item" href="/bestofthebest?class=MostPopularTVs&page=1">Most Popular TVs</a></li>
+                    <li><a class="dropdown-item" href="/bestofthebest?class=MostPopularMovies&page=1">Most Popular Movies</a></li>
+                    
+                    <!-- <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Random</a></li> -->
+                  </ul>
+                </li>
+              </ul>
+              <div class="first_wrapper">
+                <div class="search-inputt">
+                  <a class="cus_a" href=""  hidden></a>
+                  <input class="input_box" type="text" placeholder="Type to search..">
+                  <div class="autocom-box">
+                    <!-- here list are inserted from javascript -->
+                  </div>
+                  <div class="iconn" id="search_button"><i class="fas fa-search"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        
+        <main class="container-fluid py-5 text-center">
+          <div id="infodiv" >
+            {% for message in get_flashed_messages() %}
+              
+            <div class="audun_success" style="margin: auto; width: 50%; min-width: 350px; max-width: 500px;">
+              <i class="fa fa-check-circle" aria-hidden="true"></i>
+              {{ message }}
+            </div>
+            {% endfor %}
+            {% block main %}{% endblock %}
+          </div>
+        </main>
+        
+        <footer id="footerr" class="mb-5 small text-center text-muted">
+            Data provided by <a target="_blank" href="https://developer.imdb.com/">IMDB</a>/Site created by Chakib El Bassam
+        </footer>
+
+        <div id="titles_hidden" style="display: none;">
+          {{ titles }}
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+
+window.addEventListener("load", function(){
+  $(".audun_success").delay(4000).fadeOut(500);
+});
+
+
+document.addEventListener('click', function handleClickOutsideBox(event) {
+  const searchWrapper = document.querySelector(".search-inputt");
+
+  if (!searchWrapper.contains(event.target)) {
+    searchWrapper.classList.remove("active");
+  }
+  if (searchWrapper.contains(event.target)) {
+    searchWrapper.classList.add("active");
+  }
+
+  // if (document.getElementsByClassName("li_element").contains(event.target) ){
+  //   console.log(9)
+  // }
+
+  var list = document.getElementsByClassName("li_element");
+  for (var i = 0; i < list.length; i++) {
+    if (list[i].contains(event.target) ){
+      searchWrapper.classList.remove("active");
+    }
+      // list[i] is a node with the desired class name
+  }
+
+});
+
+globalThis.suggestions = document.getElementById("titles_hidden").innerHTML.split(',');
+
+const searchWrapper = document.querySelector(".search-inputt");
+const inputBox = searchWrapper.querySelector(".input_box");
+const suggBox = searchWrapper.querySelector(".autocom-box");
+const icon = searchWrapper.querySelector(".iconn");
+let linkTag = searchWrapper.querySelector(".cus_a");
+let webLink;
+// if user press any key and release
+inputBox.onkeyup = (e)=>{
+    let userData = e.target.value; //user enetered data
+    let emptyArray = [];
+    if(userData){
+        icon.onclick = ()=>{
+            // webLink = `https://www.google.com/search?q=${userData}`;
+            disable_search_buttons();
+            linkTag.setAttribute("href", "/searchresult?title="+userData);
+            linkTag.click();
+        }
+        emptyArray = suggestions.filter((data)=>{
+            //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
+            return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
+        });
+        emptyArray = emptyArray.map((data)=>{
+            // passing return data inside li tag
+            return data = `<li class="li_element">${data}</li>`;
+        });
+        searchWrapper.classList.add("active"); //show autocomplete box
+        showSuggestions(emptyArray);
+        let allList = suggBox.querySelectorAll("li");
+        for (let i = 0; i < allList.length; i++) {
+            //adding onclick attribute in all li tag
+            allList[i].setAttribute("onclick", "select(this)");
+        }
+    }else{
+        searchWrapper.classList.remove("active"); //hide autocomplete box
+    }
+}
+
+function select(element){
+    let selectData = element.textContent;
+    inputBox.value = selectData;
+    icon.onclick = ()=>{
+        disable_search_buttons();
+        // webLink = `https://www.google.com/search?q=${selectData}`;
+
+        linkTag.setAttribute("href", "/searchresult?title="+selectData);
+        linkTag.click();
+    }
+    searchWrapper.classList.remove("active");
+}
+function showSuggestions(list){
+    let listData;
+    if(!list.length){
+        userValue = inputBox.value;
+        listData = `<li>${userValue}</li>`;
+    }else{
+      listData = list.join('');
+    }
+    suggBox.innerHTML = listData;
+}
+
+</script>
+
+<style>
+::selection{
+  color: #fff;
+  background: #664AFF;
+}
+</style>
+
+
+<script>
+  var newWidth = window.innerWidth;
+  const myDropdown = document.getElementById('usernamebutton')
+  myDropdown.addEventListener('show.bs.dropdown', event => {
+    $("#arrowdropdown").removeClass('fa-solid fa-circle-chevron-down').addClass('fa-solid fa-circle-chevron-up');
+  });
+
+
+  myDropdown.addEventListener('hide.bs.dropdown', event => {
+    $("#arrowdropdown").removeClass('fa-solid fa-circle-chevron-up').addClass('fa-solid fa-circle-chevron-down');
+  })
+
+  if (document.getElementById("usernamebutton").innerHTML.indexOf("Please Log-in!") !== -1 ) {
+    document.getElementById('setusername').style.display = 'none';
+  }
+  else {
+    document.getElementById('notsetusername').style.display = 'none';
+  }
+</script>

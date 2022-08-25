@@ -1,0 +1,110 @@
+<div class="main-container">
+
+    <!-- <h1 style="color: #ffff;">(1/7)</h1> -->
+    <h2>(5/7). Choose the content's MPA rating?</h2>
+    <div class="wrapper">
+      <div class="icon facebook">
+         <div class="tooltip" >
+           <p>
+             - Rated NC-17: Adults Only – No one 17 and under admitted.          
+           </p>
+           <p>
+             - Rated R: Restricted – Under 17 requires accompanying parent or adult guardian.
+           </p>
+           <p>
+             - Rated PG-13: Parents strongly cautioned – Some material may be inappropriate for children under 13.
+           </p>
+           <p>
+             - Rated PG: Parental guidance suggested – Some material may not be suitable for children.
+           </p>
+          <p>
+            - Rated G: General audiences – All ages admitted.
+          </p>
+         </div>
+         <span>
+          <i class="fa-regular fa-circle-question">
+          </i>
+        </span>
+      </div>
+   </div>
+    <br>
+    <div class="testt" id="q-4-radio-buttons">
+      <div class="radio-buttons" >
+        <label class="custom-radio">
+          <input type="radio" name="radio" value="doesnt_matter" checked />
+          <span class="radio-btn"
+          ><i class="las la-check"></i>
+          <div class="hobbies-icon">
+              <i class="las la-dice"></i>
+              <h3>Doesn't matter</h3>
+            </div>
+          </span>
+        </label>
+        {% for ele in data %}
+          <label class="custom-radio">
+            <input type="radio" name="radio" value="us:{{ ele }}" />
+            <span class="radio-btn"
+              ><i class="las la-check"></i>
+              <div class="hobbies-icon">
+                <i class="fa-solid fa-address-card"></i>
+                <h3>{{ ele }}</h3>
+              </div>
+            </span>
+          </label>
+        {% endfor %}
+      
+      </div>
+    </div>
+    <script>
+      $(document).ready(function() {
+        var url = window.location.href;
+        if( url.indexOf('#') < 0 ) {
+            window.location.replace(url + "#");
+        } else {
+            window.location.replace(url);
+        }
+    });
+
+      var newWidth = window.innerWidth;
+      if (newWidth <= 550) {
+        // pass
+      }
+      else {
+        document.getElementById("q-4-radio-buttons").style.width = 40 + '%' ;
+      }
+
+    </script>
+  
+    <span style="padding-top: 20px;">
+        <span class='back-buttons'>
+          <a id="back-buttons" class="btn btn-primary" target="question4" style="width: 100px;">
+              <i class="las la-undo"></i>Back
+          </a>
+        </span>
+        <span class='question-buttons'>
+          <a id="question" class="btn btn-primary" target="question6" style="width: 100px;">
+              Next <i class="las la-redo"></i>
+          </a>
+        </span>
+    </span>
+  </div>
+
+
+
+
+<script>
+  try {
+    let result = document.evaluate(
+      '//input[@value="{e}"]'.format({ e: choices[4] }),
+      document,
+      null,
+      XPathResult.ANY_TYPE,
+      null
+      ).iterateNext();
+      
+    result.checked = true;
+  }
+  catch {
+    // pass
+  }
+</script>

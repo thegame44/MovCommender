@@ -1,0 +1,162 @@
+<div class="main-container">
+    <!-- <h1 style="color: #ffff;">(1/7)</h1> -->
+    <h2>(4/7). Choose the content's rating?</h2>
+    <div class="wrapper">
+      <div class="icon facebook">
+         <div class="tooltip" style="width: 361px;">
+          <p>
+            - High: ratings between 7.0 - 10
+          </p>
+          <p>
+            - Medium: ratings between 4.0 - 7.0
+          </p>
+          <p>
+            - Low: ratings between 1.0 - 4.0
+          </p>
+         </div>
+         <span>
+          <i class="fa-regular fa-circle-question">
+          </i>
+        </span>
+      </div>
+   </div>
+    <br>
+    <div class="testt" id="q-4-radio-buttons">
+      <div class="radio-buttons" >
+        <label class="custom-radio">
+          <input type="radio" name="radio" value="7.0-10" checked />
+          <span class="radio-btn"
+            ><i class="las la-check"></i>
+            <div class="hobbies-icon">
+              <i class="las la-star"></i>
+              <h3>High</h3>
+            </div>
+          </span>
+          <label class="custom-radio">
+            <input type="radio" name="radio" value="4.0-7.0"/>
+            <span class="radio-btn"
+            ><i class="las la-check"></i>
+            <div class="hobbies-icon">
+              <i class="las la-star-half-alt"></i>
+              <h3>Medium</h3>
+              </div>
+            </span>
+          </label>
+          <label class="custom-radio">
+            <input type="radio" name="radio" value="1.0-4.0"/>
+            <span class="radio-btn"
+            ><i class="las la-check"></i>
+            <div class="hobbies-icon">
+                <i class="lar la-star-half"></i>
+                <h3>Low</h3>  
+              </div>
+            </span>
+        </label>
+
+        <label class="custom-radio">
+          <input type="radio" name="radio" value="doesnt_matter"/>
+          <span class="radio-btn"
+          ><i class="las la-check"></i>
+          <div class="hobbies-icon">
+              <i class="las la-dice"></i>
+              <h3>Doesn't matter</h3>
+            </div>
+          </span>
+        </label>
+      </div>
+    </div>
+    <script>
+
+      $(document).ready(function() {
+          var url = window.location.href;
+          if( url.indexOf('#') < 0 ) {
+              window.location.replace(url + "#");
+          } else {
+              window.location.replace(url);
+          }
+      });
+
+      var newWidth = window.innerWidth;
+      if (newWidth <= 550) {
+        // pass
+      }
+      else {
+        document.getElementById("q-4-radio-buttons").style.width = 40 + '%' ;
+      }
+
+
+      try {
+        var selected = document.querySelector(".selected");
+        var optionsContainer = document.querySelector(".options-container");
+        var searchBox = document.querySelector(".search-box input");
+
+        var optionsList = document.querySelectorAll(".option_t");
+        var filterList = searchTerm => {
+        searchTerm = searchTerm.toLowerCase();
+        optionsList.forEach(option => {
+          let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+          if (label.indexOf(searchTerm) != -1) {
+            option.style.display = "block";
+          } else {
+            option.style.display = "none";
+          }
+        });
+      };
+      }
+      catch {
+        console.log('')
+      };
+
+      selected.addEventListener("click", () => {
+        optionsContainer.classList.toggle("active");
+
+        searchBox.value = "";
+        filterList("");
+
+        if (optionsContainer.classList.contains("active")) {
+          searchBox.focus();
+        }
+      });
+
+      optionsList.forEach(o => {
+        o.addEventListener("click", () => {
+          selected.innerHTML = o.querySelector("label").innerHTML;
+          optionsContainer.classList.remove("active");
+        });
+      });
+
+      searchBox.addEventListener("keyup", function(e) {
+        filterList(e.target.value);
+      });
+    </script>
+  
+    <span style="padding-top: 20px;">
+        <span class='back-buttons'>
+          <a id="back-buttons" class="btn btn-primary" target="question3" style="width: 100px;">
+              <i class="las la-undo"></i>Back
+          </a>
+        </span>
+        <span class='question-buttons'>
+          <a id="question" class="btn btn-primary" target="question5" style="width: 100px;">
+              Next <i class="las la-redo"></i>
+          </a>
+        </span>
+    </span>
+  </div>
+
+  <script>
+    try {
+      let result = document.evaluate(
+        '//input[@value="{e}"]'.format({ e: choices[3] }),
+        document,
+        null,
+        XPathResult.ANY_TYPE,
+        null
+        ).iterateNext();
+        
+      result.checked = true;
+    }
+    catch {
+      // pass
+    }
+  </script>

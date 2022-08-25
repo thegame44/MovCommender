@@ -1,0 +1,10 @@
+Flask
+Flask-Session
+requests
+smtplib
+sqlite3
+email
+Flask Flask-WTF
+math
+json
+gunicorn
