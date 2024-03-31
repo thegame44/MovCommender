@@ -7,7 +7,7 @@ hello there, my name is Chakib El Basssam from croatia/Morocco i live in ireland
 ## Explanations about the files in this project:
 
 1. flask session
-    - It's a folder containing the user's session (coockies)
+    - It's a folder containing the user's session (cookies)
 
 
 2. static
